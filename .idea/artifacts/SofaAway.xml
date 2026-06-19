@@ -1,0 +1,20 @@
+<component name="ArtifactManager">
+  <artifact type="jpackage" name="SofaAway">
+    <output-path>$PROJECT_DIR$/out/artifacts/SofaAway</output-path>
+    <properties id="jpackage-properties">
+      <options>
+        <option name="version" value="v1.1.4.5.1.4" />
+        <option name="copyright" value="None" />
+        <option name="description" value="A moving sofa on your screen. 一个会在你屏幕上移动的沙发。" />
+        <option name="vendor" value="None" />
+        <option name="verbose" value="true" />
+        <option name="mainClass" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="SofaAway.jar">
+        <element id="module-output" name="SofaAway" />
+      </element>
+    </root>
+  </artifact>
+</component>
