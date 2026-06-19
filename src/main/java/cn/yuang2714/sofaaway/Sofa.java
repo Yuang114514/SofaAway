@@ -17,6 +17,7 @@ public class Sofa extends JFrame {
         setUndecorated(true);
         setBackground(new Color(0,0,0,0));
         setAlwaysOnTop(true);
+        setIconImage(new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofa.png"))).getImage());
         
         JPanel panel = new JPanel() {
             @Override

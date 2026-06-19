@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="SofaAway:jar">
+  <artifact type="jar" name="SofaAway:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/SofaAway</output-path>
     <root id="archive" name="SofaAway.jar">
       <element id="module-output" name="SofaAway" />

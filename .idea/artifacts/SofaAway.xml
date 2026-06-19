@@ -1,14 +1,14 @@
 <component name="ArtifactManager">
   <artifact type="jpackage" name="SofaAway">
-    <output-path>$PROJECT_DIR$/out/artifacts/SofaAway</output-path>
+    <output-path>$PROJECT_DIR$/out/artifacts/SofaAwayPlatformed</output-path>
     <properties id="jpackage-properties">
       <options>
-        <option name="version" value="v1.1.4.5.1.4" />
+        <option name="version" value="11.45.14" />
         <option name="copyright" value="None" />
         <option name="description" value="A moving sofa on your screen. 一个会在你屏幕上移动的沙发。" />
         <option name="vendor" value="None" />
         <option name="verbose" value="true" />
-        <option name="mainClass" value="" />
+        <option name="mainClass" value="cn.yuang2714.sofaaway.SofaAway" />
       </options>
     </properties>
     <root id="root">
