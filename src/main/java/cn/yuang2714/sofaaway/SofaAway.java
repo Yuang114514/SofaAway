@@ -8,7 +8,7 @@ public class SofaAway {
         System.setProperty("sun.java2d.noddraw", "true");
         
         Sofa sofa = new Sofa();
-        //sofa.away();//SOFA AWAY!!!
+        sofa.away();//SOFA AWAY!!!
         
         System.exit(0);
     }
