@@ -24,7 +24,7 @@ public class AssociatedSofa {
         if (isStopped) return;
         //计算进度
         double progress = (double) (System.currentTimeMillis() - startingTime) / usingTime;
-        if (progress > 1) {
+        if (!isStopped && progress > 1) {
             stop();
             return;
         }
