@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Sofa extends JFrame implements Runnable {
-    private final int ASSOCIATED_SOFA_COUNT = 10;
+    private final int ASSOCIATED_SOFA_COUNT = 3;
     private final BufferedImage drawingPane;
     private final Graphics2D graphics;
     private List<AssociatedSofa> associations;
@@ -86,7 +86,7 @@ public class Sofa extends JFrame implements Runnable {
     private AssociatedSofa randomAssociatedSofa() {
         int startX = random.nextInt(0, screenInfo.wayLength - 400);
         int wayLength = random.nextInt(screenInfo.wayLength / 8, screenInfo.wayLength / 2);
-        int y = random.nextInt(screenInfo.largest.y, screenInfo.largest.y + screenInfo.largest.height - 200);
+        int y = random.nextInt(screenInfo.largest.y, screenInfo.largest.y + screenInfo.largest.height - 705);
         int time = random.nextInt(3000, 5000);
         System.out.println("创建了伴生沙发。起点：" + startX + "像素，路程：" + wayLength + "像素，高度：" + y + "像素，用时：" + time + "ms");
         return new AssociatedSofa(y, startX, wayLength, randomSofaImage().getImage(), time);
@@ -156,7 +156,7 @@ public class Sofa extends JFrame implements Runnable {
             case 7 -> "pink";
             default -> "purple";
         };
-        return new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofas/" + colorName + "_sofa.png")));
+        return new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofas/galaxy_brain_sofa.png")));
     }
     
     private ScreenInfo getScreenInfo() {

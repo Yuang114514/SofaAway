@@ -9,7 +9,5 @@ public class SofaAway {
         
         Sofa sofa = new Sofa();
         sofa.away();//SOFA AWAY!!!
-        
-        System.exit(0);
     }
 }
