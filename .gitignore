@@ -33,3 +33,5 @@ build/
 
 src/main/java/deepseek_demo
 src/main/java/test
+
+build.ps1

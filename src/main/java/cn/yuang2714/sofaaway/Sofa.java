@@ -2,6 +2,8 @@ package cn.yuang2714.sofaaway;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +26,14 @@ public class Sofa extends JFrame implements Runnable {
         setTitle("Sofa Away");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
+        
+        //按esc退出
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) System.exit(0);
+            }
+        });
 
         //透明背景
         setUndecorated(true);
@@ -145,17 +155,6 @@ public class Sofa extends JFrame implements Runnable {
     }
     
     private ImageIcon randomSofaImage() {
-        String colorName = switch (random.nextInt(0,9)) {
-            case 0 -> "red";
-            case 1 -> "orange";
-            case 2 -> "yellow";
-            case 3 -> "light_green";
-            case 4 -> "green";
-            case 5 -> "indigo";
-            case 6 -> "blue";
-            case 7 -> "pink";
-            default -> "purple";
-        };
         return new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofas/galaxy_brain_sofa.png")));
     }
     
