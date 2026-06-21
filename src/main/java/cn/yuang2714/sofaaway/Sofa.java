@@ -29,7 +29,7 @@ public class Sofa extends JFrame implements Runnable {
         setTitle("Sofa Away");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-//        setAlwaysOnTop(true);
+        setAlwaysOnTop(true);
 
         //透明背景
         setUndecorated(true);
@@ -76,13 +76,13 @@ public class Sofa extends JFrame implements Runnable {
     public void away() throws Exception {
         //将主沙发设置好
         System.out.println("正在设置主沙发......");
-//        mainSofa = new AssociatedSofa(
-//                screenInfo.mediumY - 150,
-//                0,
-//                screenInfo.wayLength,
-//                new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofas/white_sofa.png"))).getImage(),
-//                14500
-//        );
+        mainSofa = new AssociatedSofa(
+                screenInfo.mediumY - 150,
+                0,
+                screenInfo.wayLength,
+                new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofas/white_sofa.png"))).getImage(),
+                14500
+        );
         System.out.println("主沙发设置完毕。路程：" + screenInfo.wayLength + "像素");
         
         //设置伴生沙发（初始5个）
@@ -100,21 +100,21 @@ public class Sofa extends JFrame implements Runnable {
         
         //启动音乐，并等待音乐唱 “So far away”
         startMusic();
-//        mainSofa.start();
+        mainSofa.start();
         associations.forEach(AssociatedSofa::start);
-//        mainSofa.update(graphics);
+        mainSofa.update(graphics);
         Thread.sleep(1500);
         updateThread.start();
         
         //监控移动
         while (true) {
             Thread.sleep(10);
-//            if (System.currentTimeMillis() >= startTime + 14000) {
-//                isFinished = true;
-//                Thread.sleep(500);
-//                System.out.println("沙发移动完毕");
-//                return;
-//            }
+            if (System.currentTimeMillis() >= startTime + 14000) {
+                isFinished = true;
+                Thread.sleep(500);
+                System.out.println("沙发移动完毕");
+                return;
+            }
         }
     }
     
@@ -175,7 +175,7 @@ public class Sofa extends JFrame implements Runnable {
         graphics.setComposite(AlphaComposite.SrcOver);
         
         //更新沙发
-//        mainSofa.update(graphics);
+        mainSofa.update(graphics);
         associations.forEach(s -> s.update(graphics));
         
         //重新绘制
