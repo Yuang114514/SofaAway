@@ -1,7 +1,5 @@
 package cn.yuang2714.sofaaway;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,24 +10,20 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Sofa extends JFrame implements Runnable {
     private final int ASSOCIATED_SOFA_COUNT = 10;
-    private final Clip music = AudioSystem.getClip();
     private final BufferedImage drawingPane;
     private final Graphics2D graphics;
     private List<AssociatedSofa> associations;
-    private AssociatedSofa mainSofa;
     private final ScreenInfo screenInfo;
     private final Random random = new Random();
-    private volatile boolean isFinished = false;
     private final JPanel panel;
     
     private record ScreenInfo(Rectangle largest ,int mediumY, int wayLength) {}
     
-    public Sofa() throws Exception {
+    public Sofa() {
         //基本设置
         setTitle("Sofa Away");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
-//        setAlwaysOnTop(true);
 
         //透明背景
         setUndecorated(true);
@@ -72,19 +66,7 @@ public class Sofa extends JFrame implements Runnable {
         setVisible(true);
     }
     
-    @SuppressWarnings("BusyWait")
     public void away() throws Exception {
-        //将主沙发设置好
-        System.out.println("正在设置主沙发......");
-//        mainSofa = new AssociatedSofa(
-//                screenInfo.mediumY - 150,
-//                0,
-//                screenInfo.wayLength,
-//                new ImageIcon(Objects.requireNonNull(getClass().getResource("/sofas/white_sofa.png"))).getImage(),
-//                14500
-//        );
-        System.out.println("主沙发设置完毕。路程：" + screenInfo.wayLength + "像素");
-        
         //设置伴生沙发（初始5个）
         System.out.println("正在设置伴生沙发......");
         associations = new CopyOnWriteArrayList<>();
@@ -92,30 +74,13 @@ public class Sofa extends JFrame implements Runnable {
             associations.add(randomAssociatedSofa());
         }
         
-        //记录开始时间
-        long startTime = System.currentTimeMillis();
-        
         //设置更新线程
         Thread updateThread = new Thread(this, "Sofa Update Thread");
         
         //启动音乐，并等待音乐唱 “So far away”
-        startMusic();
-//        mainSofa.start();
         associations.forEach(AssociatedSofa::start);
-//        mainSofa.update(graphics);
         Thread.sleep(1500);
         updateThread.start();
-        
-        //监控移动
-        while (true) {
-            Thread.sleep(10);
-//            if (System.currentTimeMillis() >= startTime + 14000) {
-//                isFinished = true;
-//                Thread.sleep(500);
-//                System.out.println("沙发移动完毕");
-//                return;
-//            }
-        }
     }
     
     private AssociatedSofa randomAssociatedSofa() {
@@ -156,8 +121,6 @@ public class Sofa extends JFrame implements Runnable {
                 System.out.println("补充了一个沙发，目前沙发数：" + associations.size());
             }
             
-            if (isFinished) return;
-            
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
@@ -175,7 +138,6 @@ public class Sofa extends JFrame implements Runnable {
         graphics.setComposite(AlphaComposite.SrcOver);
         
         //更新沙发
-//        mainSofa.update(graphics);
         associations.forEach(s -> s.update(graphics));
         
         //重新绘制
@@ -220,10 +182,5 @@ public class Sofa extends JFrame implements Runnable {
                 medY,
                 maxX - minX
         );
-    }
-    
-    private void startMusic() throws Exception {
-        music.open(AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResource("/sofa_away.wav"))));
-        music.start();
     }
 }
